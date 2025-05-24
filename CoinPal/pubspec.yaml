@@ -1,5 +1,5 @@
 name: coinpal
-description: Virtual Crypto Cards
+description: A Flutter crypto wallet app with Firebase and Bitcoin
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -14,10 +14,11 @@ dependencies:
   # Firebase Core
   firebase_core: ^2.30.0
 
-  # Bitcoin wallet (null-safe fork)
+  # Bitcoin wallet (fork with null safety)
   bitcoin_flutter:
     git:
-      url: https://github.com/dart-bitcoin/bitcoin_flutter.git
+      url: https://github.com/DasPepe/bitcoin_flutter.git
+      ref: null-safety
 
   # QR Code generation
   qr_flutter: ^4.1.0
