@@ -1,46 +1,35 @@
-buildscript {
-    ext.kotlin_version = '1.6.10' // Change here
-    repositories {
-        google()
-        jcenter()
-        maven { url 'https://jitpack.io' }
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'dev.flutter.flutter-gradle-plugin'
+    id 'com.google.gms.google-services' // hanya jika kamu pakai Firebase
+}
+
+android {
+    namespace "com.example.coinpal" // ganti sesuai nama package kamu
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.coinpal" // ganti juga sesuai package kamu
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
     }
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.3'
-    }
-
-    ext {
-        compileSdkVersion = 29
-        buildToolsVersion = "28.0.3"
-        minSdkVersion = 23
-        targetSdkVersion = 29
-        supportLibVersion = "28.+"
+    buildTypes {
+        release {
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven { url 'https://jitpack.io' }
-    }
-//    dependencies {
-//        classpath 'com.google.gms:google-services:4.3.3'
-//    }
+flutter {
+    source '../..'
 }
 
-rootProject.buildDir = '../build'
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-
-subprojects {
-    project.evaluationDependsOn(':app')
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
