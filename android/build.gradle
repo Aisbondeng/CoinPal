@@ -4,7 +4,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.2'
+        // Gradle plugin (yang kompatibel dengan Java 17 / Codemagic)
+        classpath 'com.android.tools.build:gradle:7.4.2'
+
+        // Google Services plugin (jika kamu pakai Firebase)
         classpath 'com.google.gms:google-services:4.3.15'
     }
 }
