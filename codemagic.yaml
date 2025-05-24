@@ -1,0 +1,22 @@
+workflows:
+  coinpal-workflow:
+    name: Build APK for CoinPal
+    max_build_duration: 15
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get Flutter dependencies
+        script: |
+          flutter pub get
+
+      - name: Build Android APK (debug)
+        script: |
+          flutter build apk --debug
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-debug.apk
+
+    publishing:
+      email:
+        recipients:
+          - kpphmri@gmail.com
