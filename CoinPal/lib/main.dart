@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:safepal_example/pages/add_wallet_page.dart';
 import 'package:safepal_example/pages/main_wallet_page.dart';
 import 'package:safepal_example/themeProvider.dart';
@@ -11,15 +12,16 @@ import 'manager/wallet_manager.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
+  await Firebase.initializeApp(); // Inisialisasi Firebase
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  _initApp();
+  await _initApp();
 }
 
-void _initApp() async {
+Future<void> _initApp() async {
   await themeProvider.init();
   await langConfig.asyncGetCurLang();
   await chainConfigManager.init();
@@ -29,19 +31,16 @@ void _initApp() async {
 }
 
 class MyApp extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     return _MyAppState();
   }
-
 }
 
 class _MyAppState extends State<MyApp> with AutomaticKeepAliveClientMixin {
-
   @override
   void initState() {
-    WalletManager.instance.addDidChangeWalletCallback(callback: (){
+    WalletManager.instance.addDidChangeWalletCallback(callback: () {
       updateUI();
     });
     super.initState();
@@ -71,33 +70,32 @@ class _MyAppState extends State<MyApp> with AutomaticKeepAliveClientMixin {
     if (instance.isBinded()) {
       return MainWalletPage();
     }
-    return AddWalletPage(onPress: (){
-      Navigator.of(this.context).push(MaterialPageRoute(builder: (context){
+    return AddWalletPage(onPress: () {
+      Navigator.of(this.context).push(MaterialPageRoute(builder: (context) {
         return MainWalletPage();
       }));
-    },);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    MaterialApp materialApp = MaterialApp(
+    return MaterialApp(
       navigatorKey: navigatorKey,
-        title: "CoinPal App Core",
-        localeResolutionCallback: (locale, locales) {
-          if (locales.contains(locale)) {
-            return locale;
-          }
-          return langConfig.curLang!.locale;
-        },
-        supportedLocales: langConfig.supportedLocales(),
-        locale: langConfig.curLang!.locale,
-        theme: themeProvider.lightTheme,
-        darkTheme: themeProvider.darkTheme,
-        themeMode: themeProvider.themeMode,
-        home: _createHomePage(), //主体部分
+      title: "CoinPal App Core",
+      localeResolutionCallback: (locale, locales) {
+        if (locales.contains(locale)) {
+          return locale;
+        }
+        return langConfig.curLang!.locale;
+      },
+      supportedLocales: langConfig.supportedLocales(),
+      locale: langConfig.curLang!.locale,
+      theme: themeProvider.lightTheme,
+      darkTheme: themeProvider.darkTheme,
+      themeMode: themeProvider.themeMode,
+      home: _createHomePage(),
     );
-    return materialApp;
   }
 }
