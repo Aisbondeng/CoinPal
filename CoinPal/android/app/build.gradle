@@ -1,8 +1,9 @@
+def flutterRoot = localProperties.getProperty('flutter.sdk')
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services' // opsional, jika pakai Firebase
+apply plugin: 'com.google.gms.google-services' // jika pakai Firebase
 
 android {
     namespace "com.example.coinpal"
@@ -18,8 +19,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
             shrinkResources false
+            minifyEnabled false
             signingConfig signingConfigs.debug
         }
     }
