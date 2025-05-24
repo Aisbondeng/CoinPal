@@ -1,16 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'dev.flutter.flutter-gradle-plugin'
-    id 'com.google.gms.google-services' // hanya jika kamu pakai Firebase
+    id 'com.google.gms.google-services' // Hapus baris ini jika tidak pakai Firebase
+    id 'dev.flutter.flutter-gradle-plugin' version '1.0.0'
 }
 
 android {
-    namespace "com.example.coinpal" // ganti sesuai package kamu
+    namespace "com.example.coinpal" // Ganti dengan nama package kamu
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.coinpal" // ganti sesuai app kamu
+        applicationId "com.example.coinpal" // Ganti sesuai aplikasi kamu
         minSdk 21
         targetSdk 33
         versionCode 1
