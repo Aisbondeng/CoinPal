@@ -1,37 +1,32 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services' // WAJIB untuk Firebase
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+
+def flutterRoot = System.getenv("FLUTTER_ROOT")
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.coinbtc.conpal" // Pastikan sama dengan package dari google-services.json
-    compileSdkVersion 34
+    compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.coinbtc.conpal"
+        applicationId "com.example.coinpal"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-
-        multiDexEnabled true
     }
 
     buildTypes {
         release {
+            shrinkResources false
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = '17'
-    }
+    namespace "com.example.coinpal"
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-analytics:21.6.0' // Contoh Firebase SDK (boleh dihapus kalau tidak perlu)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
