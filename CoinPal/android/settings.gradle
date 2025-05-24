@@ -1,13 +1,8 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url = uri("https://storage.googleapis.com/download.flutter.io") } // PENTING
-    }
-    plugins {
-        id("dev.flutter.flutter-gradle-plugin") version "1.0.0" // WAJIB di sini, bukan di app
+        gradlePluginPortal()
     }
 }
-
-include ":app"
+include ':app'
