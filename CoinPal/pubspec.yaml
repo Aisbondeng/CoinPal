@@ -11,12 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Firebase Core
   firebase_core: ^2.30.0
 
+  # Bitcoin wallet (null-safe fork, pakai commit hash untuk stabilitas Codemagic)
   bitcoin_flutter:
     git:
       url: https://github.com/speramusinc/bitcoin_flutter.git
-      ref: null-safety
+      ref: 26df06b5a49fa3409fcd48cdcb7998b7e2ce8c1f
 
   qr_flutter: ^4.1.0
   bip39: ^1.0.6
