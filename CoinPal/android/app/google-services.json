@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "632199189516",
+    "project_id": "coinpal-6c427",
+    "storage_bucket": "coinpal-6c427.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632199189516:android:5b954eafb6955d843f4a29",
+        "android_client_info": {
+          "package_name": "com.coinbtc.conpal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjVyMoxp9YCdj8SXHKeQXA4V90NyEeUx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
