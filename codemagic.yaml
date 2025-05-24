@@ -1,22 +1,23 @@
 workflows:
-  coinpal-workflow:
-    name: Build APK for CoinPal
-    max_build_duration: 15
+  build-android:
+    name: Build Android (Debug + Release)
+    max_build_duration: 60
     environment:
       flutter: stable
+      android_signing:
+        keystore_reference: android-keystore
+      vars:
+        PACKAGE_NAME: "com.example.coinpal"
     scripts:
-      - name: Get Flutter dependencies
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Decode google-services.json
         script: |
-          flutter pub get
-
-      - name: Build Android APK (debug)
-        script: |
-          flutter build apk --debug
-
+          echo $GOOGLE_SERVICES_JSON | base64 --decode > android/app/google-services.json
+      - name: Build Debug APK
+        script: flutter build apk --debug
+      - name: Build Release APK
+        script: flutter build apk --release
     artifacts:
       - build/app/outputs/flutter-apk/app-debug.apk
-
-    publishing:
-      email:
-        recipients:
-          - kpphmri@gmail.com
+      - build/app/outputs/flutter-apk/app-release.apk
