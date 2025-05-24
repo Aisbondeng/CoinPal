@@ -11,24 +11,15 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Firebase Core
   firebase_core: ^2.30.0
 
-  # Bitcoin wallet (null-safe, aman untuk Codemagic)
   bitcoin_flutter:
     git:
-      url: https://github.com/corenel/bitcoin_flutter.git
+      url: https://github.com/dart-bitcoin/bitcoin_flutter.git
 
-  # QR Code generation
   qr_flutter: ^4.1.0
-
-  # Mnemonic phrase support
   bip39: ^1.0.6
-
-  # State management
   provider: ^6.1.2
-
-  # UI helpers
   flutter_svg: ^2.0.10+1
   intl: ^0.19.0
   shared_preferences: ^2.2.2
