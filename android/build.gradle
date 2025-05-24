@@ -1,13 +1,13 @@
-classpath 'com.google.gms:google-services:4.3.15'classpath 'com.android.tools.build:gradle:7.4.2'buildscript {
+buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        // Gradle plugin (yang kompatibel dengan Java 17 / Codemagic)
+        // Plugin Gradle yang kompatibel dengan Java 17 / Codemagic
         classpath 'com.android.tools.build:gradle:7.4.2'
 
-        // Google Services plugin (jika kamu pakai Firebase)
+        // Plugin Google Services, jika kamu menggunakan Firebase
         classpath 'com.google.gms:google-services:4.3.15'
     }
 }
