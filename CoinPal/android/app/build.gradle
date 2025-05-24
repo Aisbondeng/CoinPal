@@ -1,35 +1,32 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services' // jika kamu pakai Firebase
-    id 'dev.flutter.flutter-gradle-plugin' // TANPA version di sini!
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services' // opsional
+
+def flutterRoot = System.getenv("FLUTTER_ROOT")
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.example.coinpal"
-    compileSdk 33
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.example.coinpal"
-        minSdk 21
-        targetSdk 33
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
 
     buildTypes {
         release {
-            shrinkResources false
             minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.debug
         }
     }
-}
 
-flutter {
-    source '../..'
+    namespace "com.example.coinpal"
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
