@@ -1,21 +1,35 @@
-buildscript {
-    ext.kotlin_version = '1.8.10' // Tambahkan ini
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' version '1.8.10'
+    id 'dev.flutter.flutter-gradle-plugin'
+    id 'com.google.gms.google-services' // opsional, untuk Firebase
+}
 
-    repositories {
-        google()
-        mavenCentral()
+android {
+    namespace "com.example.coinpal"
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.coinpal"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
     }
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.15' // opsional
+    buildTypes {
+        release {
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10"
 }
