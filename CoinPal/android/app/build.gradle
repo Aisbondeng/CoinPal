@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services' // hapus kalau tidak pakai Firebase
-    id 'dev.flutter.flutter-gradle-plugin' version '0.0.1' // tambahkan versi dummy
+    id 'com.google.gms.google-services' // jika kamu pakai Firebase
+    id 'dev.flutter.flutter-gradle-plugin' // TANPA version di sini!
 }
 
 android {
